@@ -1,350 +1,698 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Spotify clone</title>
+
     <link rel="icon" type="images/jpeg" href="cover1.webp">
+
     <style>
+
         body {
+
             transition: 0.5s;
+
             margin: 0;
+
             background: linear-gradient(to bottom,rgb(226, 73, 12),black);
+
             background-repeat: no-repeat;
+
             background-size: cover;
+
             background-position: center;
+
             background-attachment: fixed;
+
         }
+
 /* width */
+
 ::-webkit-scrollbar {
+
   width: 5px;
+
 }
+
+
 
 /* Track */
+
 ::-webkit-scrollbar-track {
+
   box-shadow: inset 0 0 5px rgb(210, 210, 210); 
+
   border-radius: 0px;
+
 }
+
  
+
 /* Handle */
+
 ::-webkit-scrollbar-thumb {
+
   background: rgba(76, 71, 71, 1); 
+
   border-radius: 0px;
+
 }
+
+
 
 /* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
+
   background: #020202; 
-}
-        .font1 {
-              font-family: "Roboto", sans-serif;
-              font-optical-sizing: auto;
-              font-weight: 900;
-              font-style: normal;
-              font-variation-settings:
-                "wdth" 100;
-        }
-        .bg1 {
-            position: fixed;
-            z-index: -3;
-            top: 0;
-            left: 0;
-            width: 0px;
-            height: 100vh;
-            background: linear-gradient(to bottom,rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url(bg1.gif);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            transition: 0.5s;
-        }
-        .invb1 {
-            background: rgba(0, 0, 0, 0);
-            border: none;
-            cursor: pointer;
-        }
-        .slider {
-        appearance: none;
-  width: 100%;
-  height: 2px;
-  background: #575454;
-  outline: none;
-  opacity: 0.9;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  margin-left: 15px;
-  margin-bottom: 15px;
-  transition: 0.5s;
-  margin-right: 15px;
-  cursor: pointer;
 
 }
+
+        .font1 {
+
+              font-family: "Roboto", sans-serif;
+
+              font-optical-sizing: auto;
+
+              font-weight: 900;
+
+              font-style: normal;
+
+              font-variation-settings:
+
+                "wdth" 100;
+
+        }
+
+        .bg1 {
+
+            position: fixed;
+
+            z-index: -3;
+
+            top: 0;
+
+            left: 0;
+
+            width: 0px;
+
+            height: 100vh;
+
+            background: linear-gradient(to bottom,rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url(bg1.gif);
+
+            background-repeat: no-repeat;
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+            transition: 0.5s;
+
+        }
+
+        .invb1 {
+
+            background: rgba(0, 0, 0, 0);
+
+            border: none;
+
+            cursor: pointer;
+
+        }
+
+        .slider {
+
+        appearance: none;
+
+  width: 100%;
+
+  height: 2px;
+
+  background: #575454;
+
+  outline: none;
+
+  opacity: 0.9;
+
+  -webkit-transition: .2s;
+
+  transition: opacity .2s;
+
+  margin-left: 15px;
+
+  margin-bottom: 15px;
+
+  transition: 0.5s;
+
+  margin-right: 15px;
+
+  cursor: pointer;
+
+
+
+}
+
+
+
+
 
 
 
 .slider:hover {
+
   opacity: 1;
+
 }
+
+
 
 .slider::-webkit-slider-thumb {
+
   appearance: none;
+
   appearance: none;
+
   width: 8px;
+
   height: 8px;
+
   border-radius:15px;
+
   background: #ffffff;
+
   cursor: pointer;
+
 }
 
+
+
 .slider::-moz-range-thumb {
+
+
 
   appearance: none;
+
   width: 15px;
+
   height: 15px;
+
   border-radius:15px;
+
   background: #ffffff;
+
   cursor: pointer;
+
 }
 
+
+
 .slider::-moz-range-thumb {
+
   width: 25px;
+
   height: 25px;
+
   background: #ffffff;
+
   cursor: pointer;
+
 }
+
 .music-plr1 {
+
     width: 100%;
+
     position: absolute;
+
     transition: 0.5s;
+
 }
+
 .bt1 {
+
   width: 105px;
+
   height: 35px;
+
   border-radius: 25px;
+
   background: rgba(0,0,0,0);
+
   border: 2px solid white;
+
   margin-right: 15px;
+
   color:white;
+
   font-weight: 900;
+
   cursor: pointer;
+
 }
+
 .mp1 {
+
   background: rgb(226, 73, 12);
+
   width:100%;
+
   position: fixed;
+
   top: -100px;
+
   left: 0;
+
   z-index: 1;
+
   transition: 0.5s;
+
   border-bottom: 5px solid rgb(111, 36, 7);
+
 }
+
     </style>
+
 </head>
+
 <body class="font1" id="body" onresize="cot1();fmpp3()" onscroll="check1()">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+
 <!--        scoreos = ttp1.offsetTop
+
         po = window.pageYOffset 
+
         po > scoreos-->
+
 <div class="mp1"  id="mp1">
+
   <div style="width: 100%;display: flex;justify-content: space-between;transition: 0.5s;">
+
     <div style="margin-left: 5px;cursor: pointer;width:80%" onclick="ttt1()"><p style="color: white;font-size: 20px;margin-top: 20px;margin-bottom: 0px;">Heartless</p><a style="font-size: 13px;color: white;display: flex;align-items: center;"><img src="explicit.svg" height="20" style="margin-right: 2px;">The Weeknd</a></div>
+
     <div style="display: flex;margin-top: 15px;">
+
       <button class="invb1"><img src="play.svg" height="40"></button>
+
       <button class="invb1"><img src="add_circle.svg" height="40"></button>
+
     </div>
+
     
+
   </div>
+
   <br>
+
 </div>
+
 <div class="music-player">
+
     <div class="bg1" id="bg1" onclick="toggle1()"></div>
+
     <div style="width: 100%;display: flex;justify-content: center;background: linear-gradient(to bottom,rgba(0,0,0,0.6),rgba(0,0,0,0));user-select: none;" id="ms2">
+
         <p style="text-align: center;color: white;font-size: 25px;margin-top: 5px;"><span style="font-size: 13px;">PLAYING FROM ALBUM</span><br><span style="cursor: pointer;">After Hours</span></p>
+
         <button class="invb1" style="position: absolute;right: 5px;top: 30px;"><img src="more.svg"></button>
+
     </div>
+
     <div class="music-plr1" id="mplr1">
+
         <div style="background: linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,0.5));user-select: none;">
+
             <div style="width: 100%;display: flex;align-items: center;">
+
               <div style="width: 100%;display: flex;justify-content: space-between;align-items: center;">  
+
                      <div style="display: flex;">
+
                            <div style="margin-left: 15px;">
+
                                 <img src="cover2.gif" height="50" style="border-radius: 10px;">
+
                             </div>
+
                             <div style="margin-left: 5px;"><p style="color: white;margin-top: 0px;">Heartless<br><span style="font-size: 10px;display: flex;align-items: center;"><img src="explicit.svg" height="20" style="margin-right: 2px;">The Weeknd</span></p></div>
+
                     </div>
+
                     <button class="invb1" style="margin-right: 8px;"><img src="add_circle.svg" height="40"></button>
+
                 </div>
+
             </div>
+
             <br>
+
             <div style="width: 100%;display: flex;justify-content: left;" ><input type="range" class="slider"></div>
+
         </div>
+
         <div style="width: 100%;max-height: 1400px;background:linear-gradient(to bottom,rgba(0,0,0,0.5) ,rgba(0,0,0,1));transition: 0.5s;overflow: hidden;user-select: none;" id="second-box">
+
                             <div style="width: 100%;display: flex;justify-content: space-between;"><a style="color: white;font-size: 13px;margin-left: 15px;">0:00</a><a style="color: white;font-size: 13px;margin-right: 15px;">3:18</a></div>
+
                             <div style="width: 100%;display: flex;justify-content: space-between;" >
+
                             <button class="invb1 disabled" style="margin-left: 15px;"><img src="shuffle.svg"></button>
+
                             <div style="display: flex;"><button class="invb1"><img src="back.svg" height="30" onclick="reset1()"></button><button class="invb1" onclick="pp1()"><img src="play.svg" height="70" id="pi1"></button><button class="invb1 font1" onclick="reset1()"><img src="right.svg" height="30"></button></div>
+
                             <button class="invb1" style="margin-right: 15px;" onclick="urs1()"><img src="repeat.svg" id="rs1"></button>
+
                           </div><br>
+
                           <div style="width: 100%;display: flex;justify-content: space-between;margin-right: 15px;" >
+
                             <div style="display: flex;align-items: center;margin-left: 15px;cursor: pointer;"><img src="mobile1.svg" height="20"><a style="color: #48752C;font-size: 10px;margin-left: 5px;">This device</a></div>
+
                             <div style="display: flex;align-items: center;margin-right: 15px;"><button class="invb1" onclick="dpo1()"><img src="info1.svg" height="20"></button><button class="invb1" onclick="share1();"><img src="share1.svg" height="20"></button><button class="invb1 disabled"><img src="qm1.svg" height="20"></button></div>
+
                           </div><br>
+
                           <div style="width: 100%;display: flex;justify-content: center;">
+
                             <div style="width: 96%;background: rgb(226, 73, 12);border-radius: 10px;">
+
                                   <br><div style="margin-left: 10px;"><a style="color:white">Lyrics preview</a></div><br>
+
                                   <div style="margin-left: 10px;">
+
                                       <a style="color:black">No Lyrics available at the moment</a>
+
                                   </div><br>
+
                                   <div style="margin-left: 10px;"><button style="width:100px;height: 30px;background: white;border: none;border-radius: 15px;opacity: 0.6;" class="font1">Show lyrics</button></div><br>
+
                             </div>
+
                           </div><br>
+
                           <div style="width: 100%;display: flex;justify-content: center;border-radius: 10px;" >
+
                             <div style="width: 96%;border-top-left-radius: 10px;border-top-right-radius: 10px;">
+
                                 <div style="width: 100%;height: 220px;background: linear-gradient(to bottom,rgba(0,0,0,0.9) 15%,rgba(0,0,0,0.3) 40%),url(weekndpic1.webp);background-repeat:no-repeat;background-size: cover;background-position: top;border-top-left-radius: 10px;border-top-right-radius: 10px;cursor: pointer;"><div style="margin-left: 15px;"><a style="color: white;"><br>About the artist</a></div></div> 
+
                                 <div style="background:  rgb(32, 31, 31);border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+
                                   <br>
+
                                   <div style="margin-left: 5px;width: 100%;display: flex;justify-content: space-between;align-items: center;" id="ms1"><a style="color: white;font-size: 23px;font-weight: 900;">The Weeknd<br><span style="color: #969090;font-size: 13px;font-weight: 100;margin-left: 2px;">114 million listeners </span></a><button class="bt1 font1">Follow</button></div>
+
                                   <br><div style="width: 100%;text-justify:inter-word;text-align: justify;display: flex;justify-content: left;">
+
                                     <div style="width: 100%;height: 120px;overflow: hidden;margin-left: 5px;margin-right: 5px;"><a style="color: white;font-size: 12px;">Abel Makkonen Tesfaye (born February 16, 1990), known professionally as the Weeknd, is a Canadian singer-songwriter, record producer, and actor.He is best known for his light-lyric tenor vocal range and alternative R&B sound. His accolades include four Grammy Awards, 20 Billboard Music Awards, 22 Juno Awards, six American Music Awards, three MTV Video Music Awards and a Latin Grammy Award.His accolades include four Grammy Awards, 20 Billboard Music Awards, 22 Juno Awards, six American Music Awards, three MTV Video Music Awards and a Latin Grammy Award.
+
+
 
 Tesfaye began releasing music anonymously in 2009. After co-founding the record label XO, he released three mixtapes—House of Balloons, Thursday, and Echoes of Silence—in 2011, and gained recognition for his alternative R&B sound, as well as the mystery surrounding his identity. He signed with Republic Records to reissue the mixtapes into the compilation album Trilogy (2012), and release his debut studio album, Kiss Land (2013) the following year. After a string of collaborations and film soundtrack contributions from 2013 and 2014, Tesfaye began combining his signature alternative R&B sound with a more pop-oriented approach on his second and third studio albums, Beauty Behind the Madness (2015) and Starboy (2016); both debuted atop the US Billboard 200 while spawning the Billboard Hot 100 number-one singles "Can't Feel My Face", "The Hills", "Starboy", and "Die for You".
 
+
+
 He returned to a more alternative R&B-dominated soundscape for his debut extended play, My Dear Melancholy (2018), which included the US top-ten single "Call Out My Name". He started making an album trilogy named after three chronologic time points and explored the dream pop and new wave genres with the trilogy's first installment and fourth studio album, After Hours (2020), which spawned the chart-topping singles "Heartless" and "Save Your Tears", as well as "Blinding Lights", which became the best-performing song in the Billboard Hot 100's history and the longest-charting song at the time. Tesfaye began exploring dance-pop, leading to the second installment and fifth album, Dawn FM (2022), which included the US top-ten single, "Take My Breath". In 2023, he co-created and starred in the HBO drama series The Idol, which drew significant controversy and was received as a critical failure. His sixth album and third and final installment of the trilogy, Hurry Up Tomorrow (2025), yielded the US top-five single "Timeless" and a critically panned companion film of the same name.
 
+
+
 Tesfaye has sold over 75 million records, making him one of the world's best-selling artists. He has earned seven diamond-certifications from the Recording Industry Association of America (RIAA) for his singles, and is the first artist to simultaneously hold the top three spots on the Hot R&B/Hip-Hop Songs chart. He has also set the record for the most songs to have over 1 billion streams on Spotify (27),[4] with "Blinding Lights" being the most-streamed song in the platform's history. Tesfaye was listed by Time as one of the world's most influential people in 2020. He has donated to various causes and as an advocate for racial equality and food security, he was appointed a World Food Programme goodwill ambassador in 2021.</a></div>
-                                  </div><div style="width: 100%;height: 25px;background: linear-gradient(to bottom,rgba(63, 62, 62, 0.2) 15%,rgba(32, 31, 31,1) 70%);position: relative;bottom: 28px;border: 0px solid red;"></div><br>
+
+                                  </div><div style="width: 100%;height: 25px;background: linear-gradient(to bottom,rgba(63, 62, 62, 0.2) 15%,rgba(32, 31, 31,1) 70%);position: relative;bottom: 20px;border: 0px solid red;"></div><br>
+
                                 </div>
 
+
+
                             </div>
+
                           </div><br>
+
                           <div style="width: 100%;display: flex;justify-content: center;">
+
                             <div style="width: 96%;background: rgb(32, 31, 31);border-radius: 10px;"><br>
+
                                 <div style="margin-left: 10px;"><a style="color: white;font-size: 15px;">Explore The Weeknd</a></div><br>
+
                                 <div style="width: 100%;display: flex;justify-content: center;">
+
                                   <div style="display: flex;">
+
                                       <div style="width:100px;height:180px;background: linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,1)),url(bg1.gif);background-repeat: no-repeat;background-position: center;background-size: cover;border-radius: 10px;display: flex;align-items:end;justify-content: center;margin-right: 10px;"><p style="color: white;margin-left: 7px;margin-bottom: 12px;font-size: 12px;">Songs by the Weeknd</p></div>
+
                                       <div style="width:100px;height:180px;background: linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,1)),url(bg2.gif);background-repeat: no-repeat;background-position: center;background-size: cover;border-radius: 10px;display: flex;align-items:end;justify-content: center;margin-right: 10px;"><p style="color: white;margin-left: 7px;margin-bottom: 12px;font-size: 12px;">Similar to The Weeknd</p></div>
+
                                       <div style="width:100px;height:180px;background: linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,1)),url(bg3.gif);background-repeat: no-repeat;background-position: center;background-size: cover;border-radius: 10px;display: flex;align-items:end;justify-content: center;"><p style="color: white;margin-left: 7px;margin-bottom: 12px;font-size: 12px;">Similar to Heartless</p></div>
+
                                   </div>
+
                                 </div><br>
+
                             </div>
+
                           </div><br>
+
                           <div style="width: 100%;display: flex;justify-content: center;">
+
                                <div style="width: 96%;background: rgb(32, 31, 31);border-radius: 10px;"><br>
+
                                   <div style="margin-left: 10px;margin-bottom: 15px;display: flex;justify-content: space-between;align-items: center;"><a style="color: white;font-size: 20px;">Credits</a><button style="color:green;background: rgba(0,0,0,0);border: none;margin-right: 14px;transition: 0.5s;cursor: pointer;" class="font1 bt2">Show all</button></div>
+
                                   <div style="margin-left: 10px;display: flex;justify-content: space-between;align-items: center;margin-bottom: 10px;"><div><a style="color: white;font-size: 15px;">The Weeknd<br></a><a style="font-size: 10px;color: white;">Main Artist Arist, Producer</a></div><button class="bt1 font1">Follow</button></div>
+
                                   <div style="margin-left: 10px;display: flex;justify-content: space-between;align-items: center;margin-bottom: 10px;"><div><a style="color: white;font-size: 15px;">Carlo "IIIangelo" Montagnese<br></a><a style="font-size: 10px;color: white;">Composer</a></div></div>
+
                                   <div style="margin-left: 10px;display: flex;justify-content: space-between;align-items: center;margin-bottom: 15px;"><div><a style="color: white;font-size: 15px;">Abel Tesyafe<br></a><a style="font-size: 10px;color: white;">Composer</a></div></div>
+
                                </div>
+
                           </div>
+
                           <br>
+
         </div>
+
     </div>
+
 </div>
+
 <script>
+
     var dh = 0;
+
     var tgl = false;
+
     var tgl2 = false;
+
     function toggle1() {
+
       if(tgl === false && tgl2===false) {
+
         tgl = true
+
         document.getElementById("second-box").style.maxHeight = "0px"
+
       fmpp2();
+
       }
+
       else {
+
         tgl = false;
+
         document.getElementById("second-box").style.maxHeight = "1400px"
 
+
+
       fmpp1();
+
       }
+
     }
+
     fmpp1();
+
     check1();
+
     fmpp3();
+
     function ttt1() {
+
       window.scrollTo(0,0)
+
     }
+
     function cot1() {
+
       if(tgl === true) {fmpp2()}
+
       else {fmpp1()}
+
     }
+
     function fmpp1() {
+
         dh = window.innerHeight
+
         document.getElementById("mplr1").style.top = dh-220 + "px";
+
     }
+
     function fmpp2() {
+
         dh = window.innerHeight
+
         document.getElementById("mplr1").style.top = dh-95 + "px";
+
     }
+
     function fmpp3() {
+
       dw = window.innerWidth
+
       document.getElementById("bg1").style.width = dw + "px";
+
     }
+
     function check1() {
+
       mmp1 = document.getElementById("ms1").offsetTop
+
       mmp2 = document.getElementById("ms2").offsetTop
+
       po = window.pageYOffset 
+
       if(po > mmp1+5) {
+
         document.getElementById("mp1").style.top = "0px"
+
       }
+
       else {
+
         document.getElementById("mp1").style.top = "-100px"
+
       }
+
       if(po > mmp2) {
+
         tgl2 = true;
+
       }
+
       else {
+
         tgl2 = false;
+
       }
+
     }
+
     //xxxxxxxxxxxxxxxxxxxxxxx
+
     //Make the DIV element draggagle:
+
 /*dragElement(document.getElementById("bg1"));
 
+
+
 function dragElement(elmnt) {
+
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
   if (document.getElementById("bg1")) {
+
      if present, the header is where you move the DIV from:
+
     document.getElementById("bg1").onmousedown = dragMouseDown;
+
    } else {
+
      otherwise, move the DIV from anywhere inside the DIV:
+
     elmnt.onmousedown = dragMouseDown;
+
   }
+
+
 
   function dragMouseDown(e) {
+
     e = e || window.event;
+
     e.preventDefault();
+
     // get the mouse cursor position at startup:
+
     pos3 = e.clientX;
+
     document.onmouseup = closeDragElement;
+
     // call a function whenever the cursor moves:
+
     document.onmousemove = elementDrag;
+
   }
 
+
+
   function elementDrag(e) {
+
     e = e || window.event;
+
     e.preventDefault();
+
     // calculate the new cursor position:
+
     pos1 = (pos3 - e.clientX);
 
+
+
     pos3 = e.clientX;
+
+
+
 
 
     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+
   }
+
+
 
   function closeDragElement() {
+
     document.onmouseup = null;
+
     document.onmousemove = null;
+
     fmpp3();
+
     document.getElementById("bg1").style.left = 0
 
+
+
   }
+
 }*/
+
 </script>
+
 </body>
+
 </html>
+
 
 
