@@ -141,14 +141,14 @@
 }
     </style>
 </head>
-<body class="font1" id="body" onresize="cot1();fmpp3()" onscroll="check1()">
+<body class="font1" id="body" onresize="cot1();fmpp3();" onscroll="check1()">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
 <!--        scoreos = ttp1.offsetTop
         po = window.pageYOffset 
         po > scoreos-->
-        <audio id="audio1">
+  <audio id="audio1" onload="ss1();">
   <source src="Heartless.mp3" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
@@ -156,7 +156,7 @@ Your browser does not support the audio element.
   <div style="width: 100%;display: flex;justify-content: space-between;transition: 0.5s;">
     <div style="margin-left: 5px;cursor: pointer;width:80%" onclick="ttt1()"><p style="color: white;font-size: 20px;margin-top: 20px;margin-bottom: 0px;">Heartless</p><a style="font-size: 13px;color: white;display: flex;align-items: center;"><img src="explicit.svg" height="20" style="margin-right: 2px;">The Weeknd</a></div>
     <div style="display: flex;margin-top: 15px;">
-      <button class="invb1"><img src="play.svg" height="40"></button>
+      <button class="invb1" onclick="pp1()"><img src="play.svg" height="40" id="pi2"></button>
       <button class="invb1"><img src="add_circle.svg" height="40"></button>
     </div>
     
@@ -183,10 +183,11 @@ Your browser does not support the audio element.
                 </div>
             </div>
             <br>
-            <div style="width: 100%;display: flex;justify-content: left;" ><input type="range" class="slider"></div>
+            <div style="width: 100%;display: flex;justify-content: left;" ><input type="range" class="slider" value="0" max="100" id="slider1" onmousedown="su1=false;" onmouseup="su1=true;updt1()" ></div>
         </div>
+        
         <div style="width: 100%;max-height: 1400px;background:linear-gradient(to bottom,rgba(0,0,0,0.5) ,rgba(0,0,0,1));transition: 0.5s;overflow: hidden;user-select: none;" id="second-box">
-                            <div style="width: 100%;display: flex;justify-content: space-between;"><a style="color: white;font-size: 13px;margin-left: 15px;">0:00</a><a style="color: white;font-size: 13px;margin-right: 15px;">3:18</a></div>
+                            <div style="width: 100%;display: flex;justify-content: space-between;"><a style="color: white;font-size: 13px;margin-left: 15px;" id="ct1">0:00</a><a style="color: white;font-size: 13px;margin-right: 15px;">3:18</a></div>
                             <div style="width: 100%;display: flex;justify-content: space-between;" >
                             <button class="invb1 disabled" style="margin-left: 15px;"><img src="shuffle.svg"></button>
                             <div style="display: flex;"><button class="invb1"><img src="back.svg" height="30" onclick="reset1()"></button><button class="invb1" onclick="pp1()"><img src="play.svg" height="70" id="pi1"></button><button class="invb1 font1" onclick="reset1()"><img src="right.svg" height="30"></button></div>
@@ -195,7 +196,7 @@ Your browser does not support the audio element.
                           <div style="width: 100%;display: flex;justify-content: space-between;margin-right: 15px;" >
                             <div style="display: flex;align-items: center;margin-left: 15px;cursor: pointer;"><img src="mobile1.svg" height="20"><a style="color: #48752C;font-size: 10px;margin-left: 5px;">This device</a></div>
                             <div style="display: flex;align-items: center;margin-right: 15px;"><button class="invb1" onclick="dpo1()"><img src="info1.svg" height="20"></button><button class="invb1" onclick="share1();"><img src="share1.svg" height="20"></button><button class="invb1 disabled"><img src="qm1.svg" height="20"></button></div>
-                          </div><br>
+                          </div><br><div style="display: block;">
                           <div style="width: 100%;display: flex;justify-content: center;" id="ms1">
                             <div style="width: 96%;background: rgb(226, 73, 12);border-radius: 10px;">
                                   <br><div style="margin-left: 10px;"><a style="color:white">Lyrics preview</a></div><br>
@@ -244,15 +245,46 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
                                   <div style="margin-left: 10px;display: flex;justify-content: space-between;align-items: center;margin-bottom: 15px;"><div><a style="color: white;font-size: 15px;">Abel Tesyafe<br></a><a style="font-size: 10px;color: white;">Composer</a></div></div>
                                </div>
                           </div>
-                          <br>
+                          <br></div>
         </div>
     </div>
 </div>
 <script>
-    //var song_detail = ["Heartless","The Weeknd","0.00","3.18","explicit_on","0"]
+    ust1(); 
+    cip1()       
+    //var song_detail = ["Heartless","The Weeknd","0.00","3.18","explicit_on","0","song_source","song_album","playlist_type"]
+    var song_source = ""
+    var su1 = false;
     var dh = 0;
     var tgl = false;
     var tgl2 = false;
+    var ap1 = false;
+    var rt1 = 0;
+    function cip1() {
+      var audio = document.getElementById("audio1");
+
+      if(!audio.paused && !audio.ended) {
+        document.getElementById("pi1").src = "pause.svg"
+        document.getElementById("pi2").src = "pause.svg"
+      }
+      else {
+        document.getElementById("pi1").src = "play.svg"
+        document.getElementById("pi2").src = "play.svg"
+      }
+      if(rt1 === 0) {
+        document.getElementById("audio1").loop = false
+        document.getElementById("rs1").src = "repeat.svg"
+      }
+      else if(rt1 === 1) {
+        document.getElementById("audio1").loop = true
+        document.getElementById("rs1").src = "repeatthis.svg"
+      }
+      else {
+        document.getElementById("audio1").loop = true
+        document.getElementById("rs1").src = "repeatone.svg"
+      }
+        setTimeout(cip1,50)
+    }
     function toggle1() {
       if(tgl === false && tgl2===false) {
         tgl = true
@@ -309,9 +341,60 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
         tgl2 = false;
       }
     }
+    
+    function ust1() {
+        //201.270567
+        var a = parseInt(document.getElementById("audio1").currentTime);
+        var b = parseInt(a/60);
+        var c = 60 * b;
+        var minute = b;
+        var d = a-c;
+        if(d < 10) {
+            second = "0" + d;
+        }
+        else {
+            second = d
+        }
+        document.getElementById("slider1").max = document.getElementById("audio1").duration;
+        document.getElementById("ct1").innerHTML = minute + ":" + second
+        //document.getElementById("complete1").style.width = parseInt(parseInt(document.getElementById("audio1").currentTime)/parseInt(document.getElementById("audio1").duration) * 100)+ "%"
+        if(su1 === true) {
+          document.getElementById("slider1").value = document.getElementById("audio1").currentTime
+        }
+
+        setTimeout(ust1, 50);
+
+    } 
+    function updt1() {
+      document.getElementById("audio1").currentTime = document.getElementById("slider1").value;
+    }
+    function pp1() {
+      if(ap1 === false) {
+        document.getElementById("audio1").play();
+        ap1 = true
+      }
+      else {
+        document.getElementById("audio1").pause();
+        ap1 = false
+      }
+    }
+    function reset1() {
+      document.getElementById("audio1").currentTime = 0
+    }
+    function urs1() {
+      if(rt1 === 0) {
+        rt1 = 1
+      }
+      else if(rt1 === 1) {
+        rt1 = 2
+      }
+      else {
+        rt1 = 0
+      }
+    }
     //xxxxxxxxxxxxxxxxxxxxxxx
+
 </script>
 </body>
 </html>
-
 
