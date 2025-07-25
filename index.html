@@ -62,8 +62,14 @@
         .invb1 {
             background: rgba(0, 0, 0, 0);
             border: none;
-            cursor: pointer;
+            border-radius: 55px;
+            display:flex;
+            justify-content:center;
+            align-items: center;
         }
+       .invb1:hover {
+           background: rgba(0, 0, 0, 0.4);
+       }
         .slider {
         appearance: none;
   width: 100%;
@@ -127,7 +133,6 @@
   margin-right: 15px;
   color:white;
   font-weight: 900;
-  cursor: pointer;
 }
 .mp1 {
   background: rgb(226, 73, 12);
@@ -154,7 +159,7 @@ Your browser does not support the audio element.
 </audio>
 <div class="mp1"  id="mp1">
   <div style="width: 100%;display: flex;justify-content: space-between;transition: 0.5s;">
-    <div style="margin-left: 5px;cursor: pointer;width:80%" onclick="ttt1()"><p style="color: white;font-size: 20px;margin-top: 20px;margin-bottom: 0px;">Heartless</p><a style="font-size: 13px;color: white;display: flex;align-items: center;"><img src="explicit.svg" height="20" style="margin-right: 2px;">The Weeknd</a></div>
+    <div style="margin-left: 10px;width:80%" onclick="ttt1()"><p style="color: white;font-size: 20px;margin-top: 20px;margin-bottom: 0px;">Heartless</p><a style="font-size: 13px;color: white;display: flex;align-items: center;"><img src="explicit.svg" height="20" style="margin-right: 2px;">The Weeknd</a></div>
     <div style="display: flex;margin-top: 15px;">
       <button class="invb1" onclick="pp1()"><img src="play.svg" height="40" id="pi2"></button>
       <button class="invb1"><img src="add_circle.svg" height="40"></button>
@@ -183,7 +188,7 @@ Your browser does not support the audio element.
                 </div>
             </div>
             <br>
-            <div style="width: 100%;display: flex;justify-content: left;" ><input type="range" class="slider" value="0" max="100" id="slider1" onmousedown="su1=false;" onmouseup="su1=true;updt1()" ></div>
+            <div style="width: 100%;display: flex;justify-content: left;" ><input type="range" class="slider" value="0" max="100" id="slider1" oninput="updt3()"></div>
         </div>
         
         <div style="width: 100%;max-height: 1400px;background:linear-gradient(to bottom,rgba(0,0,0,0.5) ,rgba(0,0,0,1));transition: 0.5s;overflow: hidden;user-select: none;" id="second-box">
@@ -208,7 +213,7 @@ Your browser does not support the audio element.
                           </div><br>
                           <div style="width: 100%;display: flex;justify-content: center;border-radius: 10px;" >
                             <div style="width: 96%;border-top-left-radius: 10px;border-top-right-radius: 10px;">
-                                <div style="width: 100%;height: 220px;background: linear-gradient(to bottom,rgba(0,0,0,0.9) 15%,rgba(0,0,0,0.3) 40%),url(weekndpic1.webp);background-repeat:no-repeat;background-size: cover;background-position: top;border-top-left-radius: 10px;border-top-right-radius: 10px;cursor: pointer;"><div style="margin-left: 15px;"><a style="color: white;"><br>About the artist</a></div></div> 
+                                <div style="width: 100%;height: 220px;background: linear-gradient(to bottom,rgba(0,0,0,0.9) 15%,rgba(0,0,0,0.3) 40%),url(weekndpic1.webp);background-repeat:no-repeat;background-size: cover;background-position: top;border-top-left-radius: 10px;border-top-right-radius: 10px;"><div style="margin-left: 15px;"><a style="color: white;"><br>About the artist</a></div></div> 
                                 <div style="background:  rgb(32, 31, 31);border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
                                   <br>
                                   <div style="margin-left: 5px;width: 100%;display: flex;justify-content: space-between;align-items: center;" ><a style="color: white;font-size: 23px;font-weight: 900;">The Weeknd<br><span style="color: #969090;font-size: 13px;font-weight: 100;margin-left: 2px;">114 million listeners </span></a><button class="bt1 font1">Follow</button></div>
@@ -239,7 +244,7 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
                           </div><br>
                           <div style="width: 100%;display: flex;justify-content: center;">
                                <div style="width: 96%;background: rgb(32, 31, 31);border-radius: 10px;"><br>
-                                  <div style="margin-left: 10px;margin-bottom: 15px;display: flex;justify-content: space-between;align-items: center;"><a style="color: white;font-size: 20px;">Credits</a><button style="color:green;background: rgba(0,0,0,0);border: none;margin-right: 14px;transition: 0.5s;cursor: pointer;" class="font1 bt2">Show all</button></div>
+                                  <div style="margin-left: 10px;margin-bottom: 15px;display: flex;justify-content: space-between;align-items: center;"><a style="color: white;font-size: 20px;">Credits</a><button style="color:green;background: rgba(0,0,0,0);border: none;margin-right: 14px;transition: 0.5s;" class="font1 bt2">Show all</button></div>
                                   <div style="margin-left: 10px;display: flex;justify-content: space-between;align-items: center;margin-bottom: 10px;"><div><a style="color: white;font-size: 15px;">The Weeknd<br></a><a style="font-size: 10px;color: white;">Main Artist Arist, Producer</a></div><button class="bt1 font1">Follow</button></div>
                                   <div style="margin-left: 10px;display: flex;justify-content: space-between;align-items: center;margin-bottom: 10px;"><div><a style="color: white;font-size: 15px;">Carlo "IIIangelo" Montagnese<br></a><a style="font-size: 10px;color: white;">Composer</a></div></div>
                                   <div style="margin-left: 10px;display: flex;justify-content: space-between;align-items: center;margin-bottom: 15px;"><div><a style="color: white;font-size: 15px;">Abel Tesyafe<br></a><a style="font-size: 10px;color: white;">Composer</a></div></div>
@@ -251,10 +256,11 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
 </div>
 <script>
     ust1(); 
-    cip1()       
+    cip1();
+    updt2();   
     //var song_detail = ["Heartless","The Weeknd","0.00","3.18","explicit_on","0","song_source","song_album","playlist_type"]
     var song_source = ""
-    var su1 = true;
+    var su1 = true; 
     var dh = 0;
     var tgl = false;
     var tgl2 = false;
@@ -358,13 +364,23 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
         document.getElementById("slider1").max = document.getElementById("audio1").duration;
         document.getElementById("ct1").innerHTML = minute + ":" + second
         //document.getElementById("complete1").style.width = parseInt(parseInt(document.getElementById("audio1").currentTime)/parseInt(document.getElementById("audio1").duration) * 100)+ "%"
-        if(su1 === true) {
-          document.getElementById("slider1").value = document.getElementById("audio1").currentTime
-        }
+
 
         setTimeout(ust1, 50);
 
     } 
+    function updt2() {
+          var audio=document.getElementById("audio1")
+    if(!audio.paused && !audio.ended) {
+                if(su1 === true) {
+          document.getElementById("slider1").value = document.getElementById("audio1").currentTime
+        }
+      }
+      setTimeout(updt2,1000)
+    }
+    function updt3() {
+        document.getElementById("audio1").currentTime =document.getElementById("slider1").value
+    }
     function updt1() {
       document.getElementById("audio1").currentTime = document.getElementById("slider1").value;
     }
