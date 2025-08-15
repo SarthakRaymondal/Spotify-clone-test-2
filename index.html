@@ -67,9 +67,9 @@
             justify-content:center;
             align-items: center;
         }
-       .invb1:hover {
-           background: rgba(0, 0, 0, 0.4);
-       }
+        .disabledbt1 {
+          opacity: 0.2;
+        }
         .slider {
         appearance: none;
   width: 100%;
@@ -171,7 +171,7 @@ Your browser does not support the audio element.
 <div class="music-player">
     <div style="position: fixed;z-index: -3;top: 0;left: 0;width: 100%;height: 100vh;overflow: hidden;" id="rbg"><div class="bg1" id="bg1" onclick="toggle1()"></div></div>
     <div style="width: 100%;display: flex;justify-content: center;background: linear-gradient(to bottom,rgba(0,0,0,0.6),rgba(0,0,0,0));user-select: none;" id="ms2">
-        <p style="text-align: center;color: white;font-size: 25px;margin-top: 5px;"><span style="font-size: 13px;">PLAYING FROM ALBUM</span><br><span style="cursor: pointer;">After Hours</span></p>
+        <p style="text-align: center;color: white;font-size: 25px;margin-top: 5px;"><span style="font-size: 13px;" id="song_playlist">PLAYING FROM ALBUM</span><br><span style="cursor: pointer;" id="song_source">After Hours</span></p>
         <button class="invb1" style="position: absolute;right: 5px;top: 30px;"><img src="more.svg"></button>
     </div>
     <div class="music-plr1" id="mplr1">
@@ -182,7 +182,7 @@ Your browser does not support the audio element.
                            <div style="margin-left: 15px;">
                                 <img src="cover2.gif" height="50" style="border-radius: 10px;">
                             </div>
-                            <div style="margin-left: 5px;"><p style="color: white;margin-top: 0px;">Heartless<br><span style="font-size: 10px;display: flex;align-items: center;"><img src="explicit.svg" height="20" style="margin-right: 2px;">The Weeknd</span></p></div>
+                            <div style="margin-left: 5px;"><p style="color: white;margin-top: 0px;"><span id="song_name">Heartless</span><br><span style="font-size: 10px;display: flex;align-items: center;" id="song_artist"><img src="explicit.svg" height="20" style="margin-right: 2px;">The Weeknd</span></p></div>
                     </div>
                     <button class="invb1" style="margin-right: 8px;"><img src="add_circle.svg" height="40"></button>
                 </div>
@@ -192,9 +192,9 @@ Your browser does not support the audio element.
         </div>
         
         <div style="width: 100%;max-height: 1400px;background:linear-gradient(to bottom,rgba(0,0,0,0.5) ,rgba(0,0,0,1));transition: 0.5s;overflow: hidden;user-select: none;" id="second-box">
-                            <div style="width: 100%;display: flex;justify-content: space-between;"><a style="color: white;font-size: 13px;margin-left: 15px;" id="ct1">0:00</a><a style="color: white;font-size: 13px;margin-right: 15px;">3:18</a></div>
+                            <div style="width: 100%;display: flex;justify-content: space-between;"><a style="color: white;font-size: 13px;margin-left: 15px;" id="ct1">0:00</a><a style="color: white;font-size: 13px;margin-right: 15px;" id="total_song">3:18</a></div>
                             <div style="width: 100%;display: flex;justify-content: space-between;" >
-                            <button class="invb1 disabled" style="margin-left: 15px;"><img src="shuffle.svg"></button>
+                            <button class="invb1 disabledbt1" style="margin-left: 15px;"><img src="shuffle.svg"></button>
                             <div style="display: flex;"><button class="invb1"><img src="back.svg" height="30" onclick="reset1()"></button><button class="invb1" onclick="pp1()"><img src="play.svg" height="70" id="pi1"></button><button class="invb1 font1" onclick="reset1()"><img src="right.svg" height="30"></button></div>
                             <button class="invb1" style="margin-right: 15px;" onclick="urs1()"><img src="repeat.svg" id="rs1"></button>
                           </div><br>
@@ -257,8 +257,11 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
 <script>
     ust1(); 
     cip1();
-    updt2();   
-    //var song_detail = ["Heartless","The Weeknd","0.00","3.18","explicit_on","0","song_source","song_album","playlist_type"]
+    updt2(); 
+    spd1();
+    var song_detail = [] 
+    var dr = 0;
+    //var song_detail = ["Heartless","The Weeknd","0.00","3.18","explicit_on","0","song_album","playlist_type"]
     var song_source = ""
     var su1 = true; 
     var dh = 0;
@@ -266,6 +269,59 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
     var tgl2 = false;
     var ap1 = false;
     var rt1 = 0;
+    //Song detail
+          var sn = "Heartless";
+          var sa = "The Weeknd";
+          var csd = 0.5;
+          var tsd = "3:18";
+          var eo = true;
+          var lm = 1;
+          var ss = "After Hours";
+          var pt = "ALBUM";
+    //xxxxvar xx
+    function spd1() {
+      if (localStorage.sd1) {
+        var list1 = JSON.parse(localStorage.sd1);
+
+        alert(list1)
+          sn = list1[0]
+          sa = list1[1]
+          csd = list1[2]
+          tsd = list1[3]
+          eo = list1[4]
+          ss = list1[6]
+          pt = list1[7]
+          dr = 1
+          apply1()
+      }
+      else {
+          sn = "Heartless"
+          sa = "The Weeknd"
+          csd = 0.5
+          tsd = "3:18"
+          eo = true
+          lm = 1
+          ss = "After Hours"
+          pt = "ALBUM"
+                dr = 1
+          localStorage.sd1 = JSON.stringify([sn,sa,csd,tsd,eo,lm,pt,ss])
+          apply1()
+      }
+    }
+    function apply1() {
+      document.getElementById("song_name").innerHTML = sn
+      if(eo === true) {
+        document.getElementById("song_artist").innerHTML = "<img src='explicit.svg' height='20' style='margin-right: 2px;'>" + sa
+      }
+      else {
+        document.getElementById("song_artist").innerHTML = "<span style='margin-top:5px'>" +sa+"</span>"
+      }
+      document.getElementById("audio1").currentTime = csd 
+      document.getElementById("total_song").innerHTML = tsd
+      document.getElementById("song_playlist").innerHTML = "PLAYING FROM " + pt
+      document.getElementById("song_source").innerHTML = ss;
+      
+    }
     function cip1() {
       var audio = document.getElementById("audio1");
 
@@ -289,6 +345,7 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
         document.getElementById("audio1").loop = true
         document.getElementById("rs1").src = "repeatone.svg"
       }
+
         setTimeout(cip1,50)
     }
     function toggle1() {
@@ -318,7 +375,7 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
     }
     function fmpp1() {
         dh = window.innerHeight
-        document.getElementById("mplr1").style.top = dh-220 + "px";
+        document.getElementById("mplr1").style.top = dh-250 + "px";
     }
     function fmpp2() {
         dh = window.innerHeight
@@ -351,6 +408,7 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
     function ust1() {
         //201.270567
         var a = parseInt(document.getElementById("audio1").currentTime);
+        csd = document.getElementById("audio1").currentTime;
         var b = parseInt(a/60);
         var c = 60 * b;
         var minute = b;
@@ -360,6 +418,10 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
         }
         else {
             second = d
+        }
+        if(dr === 1) {
+        song_detail = [sn,sa,csd,tsd,eo,lm,pt,ss]
+        localStorage.setItem(sd1 ,JSON.stringify([sn,sa,0.5,tsd,eo,lm,pt,ss]))
         }
         document.getElementById("slider1").max = document.getElementById("audio1").duration;
         document.getElementById("ct1").innerHTML = minute + ":" + second
@@ -413,4 +475,5 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
 </script>
 </body>
 </html>
+
 
