@@ -119,8 +119,12 @@
   background: #ffffff;
   cursor: pointer;
 }
+.music-player {
+  width: 100%;
+}
 .music-plr1 {
     width: 100%;
+    
     position: absolute;
     transition: 0.5s;
 }
@@ -272,23 +276,23 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
     //Song detail
           var sn = "Heartless";
           var sa = "The Weeknd";
-          var csd = 0.5;
+          var csd;
           var tsd = "3:18";
           var eo = true;
-          var lm = 1;
+          var lm;
           var ss = "After Hours";
           var pt = "ALBUM";
     //xxxxvar xx
     function spd1() {
       if (localStorage.sd1) {
+        //localStorage.sd1 = JSON.stringify([sn,sa,csd,tsd,eo,lm,pt,ss])
         var list1 = JSON.parse(localStorage.sd1);
-
-        alert(list1)
           sn = list1[0]
           sa = list1[1]
           csd = list1[2]
           tsd = list1[3]
           eo = list1[4]
+          lm = list1[5]
           ss = list1[7]
           pt = list1[6]
           dr = 1
@@ -297,13 +301,12 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
       else {
           sn = "Heartless"
           sa = "The Weeknd"
-          csd = 0.5
+          csd = 0
           tsd = "3:18"
           eo = true
-          lm = 1
+          lm = 0
           ss = "After Hours"
           pt = "ALBUM"
-                dr = 1
           localStorage.sd1 = JSON.stringify([sn,sa,csd,tsd,eo,lm,pt,ss])
           apply1()
       }
@@ -316,12 +319,22 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
       else {
         document.getElementById("song_artist").innerHTML = "<span style='margin-top:5px'>" +sa+"</span>"
       }
+      console.log(rt1)
       document.getElementById("audio1").currentTime = csd 
       document.getElementById("total_song").innerHTML = tsd
       document.getElementById("song_playlist").innerHTML = "PLAYING FROM " + pt
       document.getElementById("song_source").innerHTML = ss;
-      
+      document.getElementById("slider1").value = document.getElementById("audio1").currentTime
+      dr = 1
+      updtlst()
     }
+    function updtlst() {
+        csd = document.getElementById("audio1").currentTime;
+          song_detail = [sn,sa,csd,tsd,eo,lm,pt,ss];
+          localStorage.sd1 = JSON.stringify(song_detail);
+          document.getElementById("slider1").value = document.getElementById("audio1").currentTime
+    }
+            setInterval(updtlst,50)
     function cip1() {
       var audio = document.getElementById("audio1");
 
@@ -333,19 +346,18 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
         document.getElementById("pi1").src = "play.svg"
         document.getElementById("pi2").src = "play.svg"
       }
-      if(rt1 === 0) {
+      if(lm === 0) {
         document.getElementById("audio1").loop = false
         document.getElementById("rs1").src = "repeat.svg"
       }
-      else if(rt1 === 1) {
+      else if(lm === 1) {
         document.getElementById("audio1").loop = true
         document.getElementById("rs1").src = "repeatthis.svg"
       }
-      else {
+      else if(lm === 2){
         document.getElementById("audio1").loop = true
         document.getElementById("rs1").src = "repeatone.svg"
       }
-
         setTimeout(cip1,50)
     }
     function toggle1() {
@@ -376,10 +388,14 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
     function fmpp1() {
         dh = window.innerHeight
         document.getElementById("mplr1").style.top = dh-250 + "px";
+        document.getElementById("slider1").style.marginBottom = "15px"
+        document.getElementById("body").style.overflowY = "visible"
     }
     function fmpp2() {
         dh = window.innerHeight
-        document.getElementById("mplr1").style.top = dh-95 + "px";
+        document.getElementById("mplr1").style.top = dh-115 + "px";
+        document.getElementById("slider1").style.marginBottom = "150px"
+        document.getElementById("body").style.overflowY = "hidden"
     }
     function fmpp3() {
       dw = window.innerWidth
@@ -408,7 +424,6 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
     function ust1() {
         //201.270567
         var a = parseInt(document.getElementById("audio1").currentTime);
-        csd = document.getElementById("audio1").currentTime;
         var b = parseInt(a/60);
         var c = 60 * b;
         var minute = b;
@@ -418,10 +433,6 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
         }
         else {
             second = d
-        }
-        if(dr === 1) {
-        song_detail = [sn,sa,csd,tsd,eo,lm,pt,ss]
-        localStorage.sd1 = JSON.stringify([sn,sa,0.5,tsd,eo,lm,pt,ss])
         }
         document.getElementById("slider1").max = document.getElementById("audio1").duration;
         document.getElementById("ct1").innerHTML = minute + ":" + second
@@ -460,14 +471,14 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
       document.getElementById("audio1").currentTime = 0
     }
     function urs1() {
-      if(rt1 === 0) {
-        rt1 = 1
+      if(lm === 0) {
+        lm = 1
       }
-      else if(rt1 === 1) {
-        rt1 = 2
+      else if(lm === 1) {
+        lm = 2
       }
-      else {
-        rt1 = 0
+      else if(lm === 2){
+        lm = 0
       }
     }
     //xxxxxxxxxxxxxxxxxxxxxxx
@@ -475,6 +486,7 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
 </script>
 </body>
 </html>
+
 
 
 
