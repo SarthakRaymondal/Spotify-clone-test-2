@@ -9,7 +9,7 @@
         body {
             transition: 0.5s;
             margin: 0;
-            background: linear-gradient(to bottom,rgb(226, 73, 12),black);
+            background: linear-gradient(to bottom,rgb(226, 73, 12),rgb(27, 24, 24));
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
@@ -57,7 +57,10 @@
             background-attachment: fixed;
             transition: 0.5s;
             filter: brightness(70%);
-            transition: 0.5s;
+            display: flex;
+            justify-content: center;
+
+
         }
         .invb1 {
             background: rgba(0, 0, 0, 0);
@@ -148,6 +151,14 @@
   transition: 0.5s;
   border-bottom: 5px solid rgb(111, 36, 7);
 }
+@keyframes anim1 {
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+@keyframes anim2 {
+  0%{opacity: 1;}
+  100%{opacity: 0;}
+}
     </style>
 </head>
 <body class="font1" id="body" onresize="cot1();fmpp3();" onscroll="check1()">
@@ -173,18 +184,20 @@ Your browser does not support the audio element.
   <br>
 </div>
 <div class="music-player">
-    <div style="position: fixed;z-index: -3;top: 0;left: 0;width: 100%;height: 100vh;overflow: hidden;" id="rbg"><div class="bg1" id="bg1" onclick="toggle1()"></div></div>
+    <div style="position: fixed;z-index: -3;top: 0;left: 0;width: 100%;height: 100vh;overflow: hidden;" id="rbg"><div class="bg1" id="bg1" onclick="toggle1()">
+    </div></div>
     <div style="width: 100%;display: flex;justify-content: center;background: linear-gradient(to bottom,rgba(0,0,0,0.6),rgba(0,0,0,0));user-select: none;" id="ms2">
         <p style="text-align: center;color: white;font-size: 25px;margin-top: 5px;"><span style="font-size: 13px;" id="song_playlist">PLAYING FROM ALBUM</span><br><span style="cursor: pointer;" id="song_source">After Hours</span></p>
         <button class="invb1" style="position: absolute;right: 5px;top: 30px;"><img src="more.svg"></button>
     </div>
+   <!--!!!!!!!--> <br><div style="width: 100%;display: none;justify-content: center;position: absolute;" id="cover-box"><div style="width: 170px;height: 170px;background: url(cover1.webp);background-repeat: no-repeat; background-size: cover;background-position: center; border-radius: 5px;transition: 1s;animation-name: anim1;animation-duration: 1.5s;animation-play-state: paused;" id="art-cover1"></div></div>
     <div class="music-plr1" id="mplr1">
-        <div style="background: linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,0.5));user-select: none;">
+        <div style="background: linear-gradient(to bottom, rgba(0,0,0,0),rgba(0,0,0,0.5));user-select: none;" id="ms3">
             <div style="width: 100%;display: flex;align-items: center;">
               <div style="width: 100%;display: flex;justify-content: space-between;align-items: center;">  
                      <div style="display: flex;">
                            <div style="margin-left: 15px;">
-                                <img src="cover2.gif" height="50" style="border-radius: 10px;">
+                                <img src="cover2.gif" height="50" style="border-radius: 10px;" id="cover3">
                             </div>
                             <div style="margin-left: 5px;"><p style="color: white;margin-top: 0px;"><span id="song_name">Heartless</span><br><span style="font-size: 10px;display: flex;align-items: center;" id="song_artist"><img src="explicit.svg" height="20" style="margin-right: 2px;">The Weeknd</span></p></div>
                     </div>
@@ -259,11 +272,21 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
     </div>
 </div>
 <script>
+
     ust1(); 
     cip1();
     updt2(); 
     spd1();
-    var song_detail = [] 
+    cc1();
+    var val1 = 250;
+    var val2 = 250;
+    var fto1 = false;
+    var ftc1 = false;
+    var shp = true;
+    var song_detail = [];
+    var canvas_avl = true;
+    var canvas = true;
+    var psc = true;
     var dr = 0;
     //var song_detail = ["Heartless","The Weeknd","0.00","3.18","explicit_on","0","song_album","playlist_type"]
     var song_source = ""
@@ -284,6 +307,14 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
           var ss = "After Hours";
           var pt = "ALBUM";
     //xxxxvar xx
+  var inp1 = confirm("Do u want spotify canvas?")
+  if (inp1) {
+    psc = true;
+  }
+  else {
+    psc = false;
+    canvas = false;
+  }
     function spd1() {
       if (localStorage.sd1) {
         //localStorage.sd1 = JSON.stringify([sn,sa,csd,tsd,eo,lm,pt,ss])
@@ -311,6 +342,43 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
           localStorage.sd1 = JSON.stringify([sn,sa,csd,tsd,eo,lm,pt,ss])
           apply1()
       }
+    }
+    function cc1() {
+      dh = window.innerHeight
+      if (canvas===false) {
+        fmpp1()
+        val1 = dh - 350
+        shp = false
+        document.getElementById("ms2").style.background = "rgba(0,0,0,0)"
+        document.getElementById("ms3").style.background = "rgba(0,0,0,0)"
+        document.getElementById("second-box").style.background = "rgba(0,0,0,0)"
+        document.getElementById("second-box").style.maxHeight = "1400px"
+        document.getElementById("bg1").style.background = "url()"
+        document.getElementById("cover3").style.display = "none"
+        document.getElementById("cover-box").style.display = "flex"
+        document.getElementById("art-cover1").style.animationName = "anim1";
+        document.getElementById("art-cover1").style.animationPlayState = "Running";
+      }
+      else if(canvas === true){
+        val1 = val2
+        shp = true
+        document.getElementById("ms2").style.background = "linear-gradient(to bottom,rgba(0,0,0,0.6),rgba(0,0,0,0))"
+        document.getElementById("ms3").style.background = "linear-gradient(to bottom,rgba(0,0,0,0) ,rgba(0,0,0,0.5))"
+        document.getElementById("second-box").style.background = "linear-gradient(to bottom,rgba(0,0,0,0.5) ,rgba(0,0,0,1))"
+        document.getElementById("bg1").style.background = "url(bg1.gif)"
+        document.getElementById("bg1").style.backgroundSize = "cover"
+        document.getElementById("bg1").style.backgroundPosition = "center"
+        document.getElementById("bg1").style.backgroundRepeat = "no-repeat"
+        document.getElementById("bg1").style.backgroundAttachment = "fixed"
+        document.getElementById("cover3").style.display = "block"
+        document.getElementById("art-cover1").style.animationName = "anim2";
+        document.getElementById("art-cover1").style.animationPlayState = "Running";
+        setTimeout(hts1,500)
+        function hts1() {
+            document.getElementById("cover-box").style.display = "none"
+        }
+      }
+      setTimeout(cc1,50)
     }
     function apply1() {
       document.getElementById("song_name").innerHTML = sn
@@ -366,6 +434,7 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
         setTimeout(cip1,50)
     }
     function toggle1() {
+      if(shp === true) {
       if(tgl === false && tgl2===false) {
         tgl = true
         document.getElementById("second-box").style.maxHeight = "0px"
@@ -380,6 +449,7 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
       fmpp1();
       }
     }
+    }
     fmpp1();
     check1();
     fmpp3();
@@ -391,19 +461,31 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
       else {fmpp1()}
     }
     function fmpp1() {
+     
         dh = window.innerHeight
-        document.getElementById("mplr1").style.top = dh-250 + "px";
+        document.getElementById("mplr1").style.top = dh-val1 + "px";
         document.getElementById("slider1").style.marginBottom = "15px"
         document.getElementById("body").style.overflowY = "visible"
     }
     function fmpp2() {
-        dh = window.innerHeight
+
+                  dh = window.innerHeight
         document.getElementById("mplr1").style.top = dh-115 + "px";
         document.getElementById("slider1").style.marginBottom = "150px"
         document.getElementById("body").style.overflowY = "hidden"
+
     }
     function fmpp3() {
-      dw = window.innerWidth
+      dw = window.innerWidth;
+      if(psc === true) {
+      if(dw >= 1206) {
+        canvas = false
+      }
+      else {
+        canvas = true
+      }
+    }
+      dh = window.innerHeight;
       document.getElementById("bg1").style.width = "100%";
 
 
