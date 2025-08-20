@@ -192,7 +192,7 @@ Your browser does not support the audio element.
                 </div>
             </div>
             <br>
-            <div style="width: 100%;display: flex;justify-content: left;" ><input type="range" class="slider" value="0" max="100" id="slider1" oninput="updt3()"></div>
+            <div style="width: 100%;display: flex;justify-content: left;" ><input type="range" class="slider" value="0" max="100" id="slider1"  ontouchstart="spd()" ontouchend="spu()" onmousedown="spd()" onmouseup="spu()"></div>
         </div>
         
         <div style="width: 100%;max-height: 1400px;background:linear-gradient(to bottom,rgba(0,0,0,0.5) ,rgba(0,0,0,1));transition: 0.5s;overflow: hidden;user-select: none;" id="second-box">
@@ -220,7 +220,7 @@ Your browser does not support the audio element.
                                 <div style="width: 100%;height: 220px;background: linear-gradient(to bottom,rgba(0,0,0,0.9) 15%,rgba(0,0,0,0.3) 40%),url(weekndpic1.webp);background-repeat:no-repeat;background-size: cover;background-position: top;border-top-left-radius: 10px;border-top-right-radius: 10px;"><div style="margin-left: 15px;"><a style="color: white;"><br>About the artist</a></div></div> 
                                 <div style="background:  rgb(32, 31, 31);border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
                                   <br>
-                                  <div style="margin-left: 5px;width: 100%;display: flex;justify-content: space-between;align-items: center;" ><a style="color: white;font-size: 23px;font-weight: 900;">The Weeknd<br><span style="color: #969090;font-size: 13px;font-weight: 100;margin-left: 2px;">114 million listeners </span></a><button class="bt1 font1">Follow</button></div>
+                                  <div style="margin-left: 5px;width: 100%;display: flex;justify-content: space-between;align-items: center;" ><a style="color: white;font-size: 23px;font-weight: 900;">The Weeknd<br><span style="color: #969090;font-size: 13px;font-weight: 100;margin-left: 2px;">114 million monthly listeners </span></a><button class="bt1 font1">Follow</button></div>
                                   <br><div style="width: 100%;text-justify:inter-word;text-align: justify;display: flex;justify-content: left;">
                                     <div style="width: 100%;height: 120px;overflow: hidden;margin-left: 5px;margin-right: 5px;"><a style="color: white;font-size: 12px;">Abel Makkonen Tesfaye (born February 16, 1990), known professionally as the Weeknd, is a Canadian singer-songwriter, record producer, and actor.He is best known for his light-lyric tenor vocal range and alternative R&B sound. His accolades include four Grammy Awards, 20 Billboard Music Awards, 22 Juno Awards, six American Music Awards, three MTV Video Music Awards and a Latin Grammy Award.His accolades include four Grammy Awards, 20 Billboard Music Awards, 22 Juno Awards, six American Music Awards, three MTV Video Music Awards and a Latin Grammy Award.
 
@@ -273,6 +273,7 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
     var tgl2 = false;
     var ap1 = false;
     var rt1 = 0;
+    var sh = 0;
     //Song detail
           var sn = "Heartless";
           var sa = "The Weeknd";
@@ -324,7 +325,9 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
       document.getElementById("total_song").innerHTML = tsd
       document.getElementById("song_playlist").innerHTML = "PLAYING FROM " + pt
       document.getElementById("song_source").innerHTML = ss;
+      if (sh === 0) {
       document.getElementById("slider1").value = document.getElementById("audio1").currentTime
+      }
       dr = 1
       updtlst()
     }
@@ -332,7 +335,9 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
         csd = document.getElementById("audio1").currentTime;
           song_detail = [sn,sa,csd,tsd,eo,lm,pt,ss];
           localStorage.sd1 = JSON.stringify(song_detail);
+          if(sh === 0) {
           document.getElementById("slider1").value = document.getElementById("audio1").currentTime
+          }
     }
             setInterval(updtlst,50)
     function cip1() {
@@ -423,6 +428,7 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
     
     function ust1() {
         //201.270567
+        if(sh === 0) {
         var a = parseInt(document.getElementById("audio1").currentTime);
         var b = parseInt(a/60);
         var c = 60 * b;
@@ -436,6 +442,22 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
         }
         document.getElementById("slider1").max = document.getElementById("audio1").duration;
         document.getElementById("ct1").innerHTML = minute + ":" + second
+      }
+      else {
+                var a = parseInt(document.getElementById("slider1").value);
+        var b = parseInt(a/60);
+        var c = 60 * b;
+        var minute = b;
+        var d = a-c;
+        if(d < 10) {
+            second = "0" + d;
+        }
+        else {
+            second = d
+        }
+        console.log("responded!")
+              document.getElementById("ct1").innerHTML = minute + ":" + second
+      }
         //document.getElementById("complete1").style.width = parseInt(parseInt(document.getElementById("audio1").currentTime)/parseInt(document.getElementById("audio1").duration) * 100)+ "%"
 
 
@@ -446,14 +468,18 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
           var audio=document.getElementById("audio1")
     if(!audio.paused && !audio.ended) {
                 if(su1 === true) {
+          if(sh === 0) {
           document.getElementById("slider1").value = document.getElementById("audio1").currentTime
+          }
         }
       }
       setTimeout(updt2,1000)
     }
+/*
     function updt3() {
         document.getElementById("audio1").currentTime =document.getElementById("slider1").value
     }
+*/
     function updt1() {
       document.getElementById("audio1").currentTime = document.getElementById("slider1").value;
     }
@@ -480,6 +506,13 @@ Tesfaye has sold over 75 million records, making him one of the world's best-sel
       else if(lm === 2){
         lm = 0
       }
+    }
+    function spd() {
+      sh = 1
+      }
+    function spu() {
+      sh = 0
+       document.getElementById("audio1").currentTime =document.getElementById("slider1").value
     }
     //xxxxxxxxxxxxxxxxxxxxxxx
 
